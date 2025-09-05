@@ -3,12 +3,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type wallColorProps = {
-  color: string;
+  color: { roof: string; wall: string };
 };
 
 const initialState: { value: wallColorProps } = {
   value: {
-    color: "#FF3F3F9C",
+    color: { roof: "#FF3F3F9C", wall: "#ccc" },
   },
 };
 

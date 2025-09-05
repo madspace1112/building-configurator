@@ -5,11 +5,8 @@ import { Scene } from "./Scene";
 import { Canvas } from "@react-three/fiber";
 import { Loading } from "./Loading";
 import { SettingColor } from "./SettingColor";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
 
-export const Home = () => {
-  const { value } = useSelector((state: RootState) => state.wallColor);
+export const Home = ({ device }: { device: string }) => {
   return (
     <div className="relative size-full">
       <Loading />
@@ -17,17 +14,17 @@ export const Home = () => {
       <div
         className="absolute left-0 top-0 size-full"
         style={{
-          background: `linear-gradient(#ffffff, ${value.color})`,
+          background: `linear-gradient(#ffffff, #3A3A3AFF)`,
         }}
       >
         <Canvas
           camera={{
-            position: [40, 10, 40],
+            position: device === "mobile" ? [100, 10, 100] : [40, 10, 40],
             isPerspectiveCamera: true,
             fov: 20,
           }}
         >
-          <Scene />
+          <Scene device={device} />
           <Environment files={["/env.hdr"]}>
             <Lightformer
               color="white"
